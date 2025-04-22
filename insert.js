@@ -1,4 +1,4 @@
-const connection = require('./db'); // calling database connection 
+const connection = require('./db');
 
 const counselingData = {
   title: "WBJEE Counseling",
@@ -128,30 +128,15 @@ const counselingData = {
   }
 };
 
-const jsonString = JSON.stringify(counselingData.sections);
-
-const sql = 'INSERT INTO counseling (title, slug, sections) VALUES (?, ?, ?)';
-connection.query(sql, [counselingData.title, counselingData.slug, jsonString], (err, result) => {
-  if (err) throw err;
-  console.log('Data inserted!');
-});
-
-
-
-// universities.forEach(card => {
-//   const query = `INSERT INTO universities (id, name, location, imgSrc, route) VALUES (?, ?, ?, ?, ?)`;
-//   const values = [card.id, card.name, card.location, card.imgSrc, card.route];
-
-//   connection.query(query, values, (err, results) => {
-//     if (err) {
-//       console.error('Error inserting data: ', err);
-//     } else {
-//       console.log(`Inserted: ${card.name}`);
-//     }
-//   });
-// });
-
-// Close connection after all queries are done
-setTimeout(() => {
-  connection.end();
-}, 2000); // Adjust timing if needed
+const query = 'INSERT INTO counseling_pages (title, slug, sections) VALUES (?, ?, ?)';
+connection.query(
+  query,
+  [counselingData.title, counselingData.slug, JSON.stringify(counselingData.sections)],
+  (err, result) => {
+    if (err) {
+      console.error('Error saving data:', err);
+    } else {
+      console.log('WBJEE Counseling data saved successfully!');
+    }
+  }
+);
