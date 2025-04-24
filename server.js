@@ -25,6 +25,7 @@ const datecounsel= require('./API/legacy/client/v1/Resource/counselinglandingpag
 const documentcounsel= require('./API/legacy/client/v1/Resource/counselinglandingpage/documentcounseling.js');
 const contactcounsel= require('./API/legacy/client/v1/Resource/counselinglandingpage/contactcounseling.js');
 const counselingfaq= require('./API/legacy/client/v1/Resource/counselinglandingpage/faqcounseling.js');
+const popUpform = require('./API/legacy/client/v1/Resource/counselinglandingpage/popUpform.js');
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true})); 
@@ -48,7 +49,7 @@ app.use("/", datecounsel);
 app.use("/", documentcounsel);
 app.use("/", contactcounsel);
 app.use("/", counselingfaq);
-
+app.use("/api/counseling", popUpform);
 
 // Start the server
 app.listen(PORT, () => {
